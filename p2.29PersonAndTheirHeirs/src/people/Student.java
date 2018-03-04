@@ -1,0 +1,22 @@
+package people;
+
+public class Student extends Person {
+	private int credits;
+
+	public Student(String name, String address) {
+		super(name, address);
+	}
+
+	public void study() {
+		credits++;
+	}
+
+	public int credits() {
+		return credits;
+	}
+
+	@Override
+	public String toString() {
+		return getName() + "\n  " + getAddress() + "\n  credits " + credits;
+	}
+}
