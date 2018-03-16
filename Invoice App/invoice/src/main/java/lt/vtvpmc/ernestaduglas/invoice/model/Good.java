@@ -18,7 +18,7 @@ public class Good {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	private double unit;
+	private double amount;
 	private BigDecimal price;
 	private String unitType;
 	@ManyToOne 
@@ -30,9 +30,9 @@ public class Good {
 
 	}
 
-	public Good(String name, double unit, BigDecimal price, String unitType) {
+	public Good(String name, double amount, BigDecimal price, String unitType) {
 		this.name = name;
-		this.unit = unit;
+		this.amount = amount;
 		this.price = price;
 		this.unitType = unitType;
 	}
@@ -54,13 +54,7 @@ public class Good {
 		this.name = name;
 	}
 
-	public double getUnit() {
-		return unit;
-	}
-
-	public void setUnit(double unit) {
-		this.unit = unit;
-	}
+	
 
 	public BigDecimal getPrice() {
 		return price;
@@ -68,6 +62,15 @@ public class Good {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
 	public String getUnitType() {
@@ -79,7 +82,7 @@ public class Good {
 	}
 
 	public BigDecimal getTotalPrice() {
-		return this.price.multiply(new BigDecimal(this.unit));
+		return this.price.multiply(new BigDecimal(this.amount));
 	}
 
 	public void setTotalPrice(BigDecimal totalPrice) {
@@ -94,6 +97,7 @@ public class Good {
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
+	
 	
 	
 	

@@ -2,6 +2,8 @@ package lt.vtvpmc.ernestaduglas.invoice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,11 +34,16 @@ public class InvoiceController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public void addInvoice(@ApiParam @RequestBody Invoice invoice){
+	public void addInvoice(@ApiParam @RequestBody @Valid Invoice invoice){
 		service.addInvoice(invoice);
 	}
 	
 	@RequestMapping(path= "/{nr}", method = RequestMethod.PUT)
+	public void updateInvoice(@PathVariable Long nr, @ApiParam @RequestBody @Valid Invoice invoice){
+		service.updateInvoice(nr, invoice);
+	}
+	
+	@RequestMapping(path= "/edit/{nr}", method = RequestMethod.PUT)
 	public void addGoodToInvoice(@PathVariable Long nr, @ApiParam @RequestBody Good good){
 		service.addGoodToInvoice(nr, good);
 	}

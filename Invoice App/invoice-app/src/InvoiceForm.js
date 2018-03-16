@@ -11,15 +11,11 @@ class InvoiceForm extends Component {
 
     }
 
-    handleCompanyNameChange = event => {
-        this.setState({ companyName: event.target.value });
+    handleChangeFor = (propertyName) => (event) => {
+        this.setState({ [propertyName]: event.target.value });
+
     }
 
-    handleCustomerNameChange = event => {
-        this.setState({ customerName: event.target.value });
-    }
-
-    
     addInvoice = event => {
         event.preventDefault();
 
@@ -28,25 +24,29 @@ class InvoiceForm extends Component {
             "customerName": this.state.customerName
         };
 
-        axios.post('http://localhost:8080/invoices', newInvoice).then(console.log('prideta'));
-        console.log(newInvoice);
+        axios.post('http://localhost:8080/invoices', newInvoice).catch(function (error) {
+            if (error.response) {
+                console.log("please fill all the fields");
+        }
+            console.log(newInvoice);
+        });
     }
 
     render() {
         return (
             <div>
-            <div>
-                <form>
-                    <p>Company name: </p>
-                    <input type="text" name="companyName" onChange={this.handleCompanyNameChange} />
-                    <p>Customer name: </p>
-                    <input type="text" name="customerName" onChange={this.handleCustomerNameChange} />
-                    <br/>
-                    <button onClick={this.addInvoice}>Add new Invoice</button>
-                </form>
+                <div>
+                    <form>
+                        <p>Company name: </p>
+                        <input type="text" name="companyName" onChange={this.handleChangeFor("companyName")} value={this.state.companyName} />
+                        <p>Customer name: </p>
+                        <input type="text" name="customerName" onChange={this.handleChangeFor("customerName")} value={this.state.customerName} />
+                        <br />
+                        <button onClick={this.addInvoice}>Add new Invoice</button>
+                    </form>
+                </div>
             </div>
-            </div>
-            
+
         )
     }
 }

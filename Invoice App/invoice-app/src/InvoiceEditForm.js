@@ -7,24 +7,18 @@ class InvoiceEditForm extends Component {
         super(props);
         this.state = {
             name: '',
-            unit: 0,
+            amount: 0,
             price: 0,
             unitType: '',
         }
     };
 
+    // componentDidMount(){
+    //     console.log(this.props);
+    // }
 
-    handleGoodNameChange = event => {
-        this.setState({name: event.target.value});
-    }
-    handleGoodUnitChange = event => {
-        this.setState({unit: event.target.value});
-    }
-    handleGoodPriceChange = event => {
-        this.setState({price: event.target.value});
-    }
-    handleGoodUnitTypeChange = event => {
-        this.setState({unitType: event.target.value});
+    handleChangeFor = (propertyName) => (event) =>{
+        this.setState({[propertyName]: event.target.value});
     }
 
     addGood = event => {
@@ -32,12 +26,12 @@ class InvoiceEditForm extends Component {
 
         const newGood = {
             "name": this.state.name,
-            "unit": this.state.unit,
+            "amount": this.state.amount,
             "price": this.state.price,
             "unitType": this.state.unitType
         };
 
-        axios.put('http://localhost:8080/invoices/'+ this.props.match.params.value, newGood).then(console.log('prideta'));
+        axios.put('http://localhost:8080/invoices/edit/'+ this.props.match.params.value, newGood).then(console.log('prideta'));
         console.log(newGood);
     }
 
@@ -48,13 +42,13 @@ render() {
             <h3>Add Good</h3>
             <form>
                 <p>Name: </p>
-                <input type="text" name="name" onChange={this.handleGoodNameChange} />
-                <p>Unit: </p>
-                <input type="text" name="unit" onChange={this.handleGoodUnitChange} />
+                <input type="text" name="name" onChange={this.handleChangeFor("name")} value= {this.state.name} />
+                <p>Amount: </p>
+                <input type="text" name="unit" onChange={this.handleChangeFor("amount")} value = {this.state.amount} />
                 <p>Unit type: </p>
-                <input type="text" name="unitType" onChange={this.handleGoodUnitTypeChange} />
+                <input type="text" name="unitType" onChange={this.handleChangeFor("unitType")} value = {this.state.unitType} />
                 <p>Price per unit: </p>
-                <input type="text" name="price" onChange={this.handleGoodPriceChange} />
+                <input type="text" name="price" onChange={this.handleChangeFor("price")} value = {this.state.price} />
                 <br />
                 <button onClick={this.addGood}>Add Good</button>
             </form>

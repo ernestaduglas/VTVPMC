@@ -10,6 +10,7 @@ public interface InvoiceService {
 	List<Invoice> getAllInvoices();
 	void addInvoice(Invoice invoice);
 	void deleteInvoice(Long nr);
+	void updateInvoice(Long nr, Invoice invoice);
 	void addGoodToInvoice(Long nr, Good good);
 	void deleteGoodFromInvoice(Long nr, Long goodId);
 

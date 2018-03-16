@@ -13,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Invoice {
@@ -22,7 +25,11 @@ public class Invoice {
 	@Transient
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	private String date = sdf.format(new Date());
+	@NotNull
+	@Length(min = 2, max = 100)
 	private String companyName;
+	@NotNull
+	@Length(min = 2, max = 100)
 	private String customerName;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "invoice")
 	private Set<Good> goods = new HashSet<Good>();

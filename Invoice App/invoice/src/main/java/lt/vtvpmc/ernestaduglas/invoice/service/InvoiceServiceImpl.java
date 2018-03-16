@@ -15,14 +15,13 @@ import lt.vtvpmc.ernestaduglas.invoice.repository.InvoiceRepository;
 public class InvoiceServiceImpl implements InvoiceService {
 	private InvoiceRepository invoiceRepo;
 	private GoodRepository goodRepo;
-	
-	
+
 	@Autowired
 	public InvoiceServiceImpl(InvoiceRepository invoiceRepo, GoodRepository goodRepo) {
 		this.invoiceRepo = invoiceRepo;
 		this.goodRepo = goodRepo;
 	}
-	
+
 	@Transactional
 	@Override
 	public List<Invoice> getAllInvoices() {
@@ -44,12 +43,22 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Transactional
 	@Override
+	public void updateInvoice(Long nr, Invoice invoice) {
+		Invoice existant = invoiceRepo.findById(nr).get();
+		if (existant != null) {
+			invoiceRepo.save(invoice);
+		}
+	}
+
+	@Transactional
+	@Override
 	public void addGoodToInvoice(Long nr, Good good) {
 		Invoice invoice = invoiceRepo.findById(nr).get();
 		good.setInvoice(invoice);
 		invoice.getGoods().add(good);
 
 	}
+
 	@Transactional
 	@Override
 	public void deleteGoodFromInvoice(Long nr, Long goodId) {
