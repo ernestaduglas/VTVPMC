@@ -13,9 +13,9 @@ class InvoiceEditForm extends Component {
         }
     };
 
-    // componentDidMount(){
-    //     console.log(this.props);
-    // }
+    componentDidMount(){
+        console.log(this.props);
+    }
 
     handleChangeFor = (propertyName) => (event) =>{
         this.setState({[propertyName]: event.target.value});
