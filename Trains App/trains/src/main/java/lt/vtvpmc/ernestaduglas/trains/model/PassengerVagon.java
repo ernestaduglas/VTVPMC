@@ -1,18 +1,18 @@
 package lt.vtvpmc.ernestaduglas.trains.model;
 
-import java.math.BigDecimal;
-
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
+@DiscriminatorValue("passenger")
 public class PassengerVagon extends Vagon {
 	@Enumerated(EnumType.STRING)
 	private PassengerClass passangerClass;
 
 	public PassengerVagon() {
-		super();
+		
 	}
 
 	public PassengerClass getPassangerClass() {

@@ -13,22 +13,15 @@ import lt.vtvpmc.ernestaduglas.trains.model.Vagon;
 import lt.vtvpmc.ernestaduglas.trains.service.TrainService;
 import lt.vtvpmc.ernestaduglas.trains.service.TrainServiceImpl;
 
-
 @Component
 public class DataInput implements CommandLineRunner {
-	@Autowired 
+	@Autowired
 	private TrainService trainService = new TrainServiceImpl();
-	
 
 	@Override
 	public void run(String... args) throws Exception {
 		Train train = new Train("2006", "Pettreson and Sons", "London");
 		trainService.addTrain(train);
-		
-		
-				
-				
-		
 
 	}
 

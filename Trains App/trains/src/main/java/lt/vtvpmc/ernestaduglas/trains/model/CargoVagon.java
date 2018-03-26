@@ -1,13 +1,15 @@
 package lt.vtvpmc.ernestaduglas.trains.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("cargo")
 public class CargoVagon extends Vagon {
 	private double maxWeight;
 
 	public CargoVagon() {
-		super();
+		
 	}
 
 	public double getMaxWeight() {

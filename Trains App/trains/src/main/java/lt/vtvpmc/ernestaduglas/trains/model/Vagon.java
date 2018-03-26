@@ -2,17 +2,24 @@ package lt.vtvpmc.ernestaduglas.trains.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Vagon {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="vagon_type", 
+discriminatorType = DiscriminatorType.STRING)
+public abstract class Vagon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long nr;
@@ -25,18 +32,7 @@ public class Vagon {
 	@Transient
 	private BigDecimal totalprice;
 
-	protected Vagon() {
-
-	}
-
-	public Vagon(String company, int count, BigDecimal price, double capacity) {
-		super();
-		this.company = company;
-		this.count = count;
-		this.price = price;
-		this.capacity = capacity;
-	}
-
+	
 
 	public Long getNr() {
 		return nr;
