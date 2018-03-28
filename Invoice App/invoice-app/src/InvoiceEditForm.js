@@ -31,7 +31,7 @@ class InvoiceEditForm extends Component {
             "unitType": this.state.unitType
         };
 
-        axios.put('http://localhost:8080/invoices/edit/'+ this.props.match.params.value, newGood).then(console.log('prideta'));
+        axios.put('http://localhost:8080/api/invoices/edit/'+ this.props.match.params.value, newGood).then(console.log('prideta'));
         console.log(newGood);
     }
 

@@ -7,6 +7,7 @@ const Navigation = () => (
       <ul>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/newinvoice'>Create new Invoice</NavLink></li>
+        <li><NavLink to='/login'>Login</NavLink></li>
       </ul>
     </nav>
   );

@@ -24,7 +24,7 @@ class InvoiceForm extends Component {
             "customerName": this.state.customerName
         };
 
-        axios.post('http://localhost:8080/invoices', newInvoice).catch(function (error) {
+        axios.post('http://localhost:8080/api/invoices', newInvoice).catch(function (error) {
             if (error.response) {
                 console.log("please fill all the fields");
         }

@@ -11,7 +11,7 @@ class Invoice extends Component {
 
   
   deleteInvoice = (invoiceNr) => {
-    axios.delete('http://localhost:8080/invoices/' + invoiceNr).then(console.log('istrinta'))
+    axios.delete('http://localhost:8080/api/invoices/' + invoiceNr).then(console.log('istrinta'))
     this.setState({ display: false })
   }
 

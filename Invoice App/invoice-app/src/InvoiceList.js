@@ -10,7 +10,7 @@ class InvoiceList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/invoices')
+    axios.get('http://localhost:8080/api/invoices')
       .then(response => { this.setState({ invoices: response.data }) })
   }
 

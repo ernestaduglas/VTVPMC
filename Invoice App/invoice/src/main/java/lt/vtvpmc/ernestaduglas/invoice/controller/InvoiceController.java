@@ -19,7 +19,7 @@ import lt.vtvpmc.ernestaduglas.invoice.service.InvoiceService;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/invoices")
+@RequestMapping(value = "/api/invoices")
 public class InvoiceController {
 	private InvoiceService service;
 
